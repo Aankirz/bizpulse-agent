@@ -1,0 +1,4 @@
+google-adk==1.14.0
+google-cloud-aiplatform
+python-dotenv
+requestspsycopg2-binary
