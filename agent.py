@@ -365,15 +365,19 @@ root_agent = Agent(
     instruction="""
 You are the entry point for BizPulse AI.
 
-Step 1: Transfer to greeter agent to collect the business profile.
-        The profile will be saved to AlloyDB automatically.
+Step 1: Immediately transfer to greeter agent to collect the business profile.
+        Do not say anything yourself. Just transfer to greeter.
 
-Step 2: Once profile is saved (greeter says "Got it! Pulling your market intelligence now..."),
-        transfer to bizpulse_workflow.
-        This runs: research → briefing → save to AlloyDB.
+Step 2: Once greeter has saved the profile and said 
+        "Got it! Pulling your market intelligence now...",
+        IMMEDIATELY and AUTOMATICALLY transfer to bizpulse_workflow
+        without waiting for any user input.
+        Do not ask the user anything. Do not pause. Just transfer.
 
-Do not generate any briefing yourself.
-Do not skip the action_agent step.
+Step 3: bizpulse_workflow will run research → briefing → save automatically.
+
+CRITICAL: Never wait for user input between Step 1 and Step 2.
+          The transition must be seamless and automatic.
 """,
     sub_agents=[greeter_agent, bizpulse_workflow]
 )
